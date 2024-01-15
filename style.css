@@ -1,0 +1,23 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #282c34;
+    color: #61dafb;
+}
+
+.clock-container {
+    text-align: center;
+}
+
+.clock {
+    font-size: 3em;
+    font-weight: bold;
+    color: #61dafb;
+    letter-spacing: 4px;
+}
+
+

@@ -1,46 +1,18 @@
-// Function to add a new task
-function addTask() {
-    var taskInput = document.getElementById('task-input');
-    var taskList = document.getElementById('task-list');
+function updateClock() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
 
-    if (taskInput.value.trim() !== '') {
-        // Create a new list item
-        var li = document.createElement('li');
-        li.innerHTML = `
-            <span>${taskInput.value}</span>
-            <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
-        `;
+    hours = (hours < 10) ? '0' + hours : hours;
+    minutes = (minutes < 10) ? '0' + minutes : minutes;
+    seconds = (seconds < 10) ? '0' + seconds : seconds;
 
-        // Append the new task to the task list
-        taskList.appendChild(li);
-
-        // Clear the input field
-        taskInput.value = '';
-
-        // Save tasks to local storage
-        saveTasksToLocalStorage();
-    }
+    document.getElementById('hours').textContent = hours;
+    document.getElementById('minutes').textContent = minutes;
+    document.getElementById('seconds').textContent = seconds;
 }
 
-// Function to delete a task
-function deleteTask(btn) {
-    var li = btn.parentElement;
-    li.remove();
+setInterval(updateClock, 1000);
 
-    // Save tasks to local storage after deletion
-    saveTasksToLocalStorage();
-}
-
-// Function to save tasks to local storage
-function saveTasksToLocalStorage() {
-    var tasks = [];
-    var taskList = document.getElementById('task-list').getElementsByTagName('li');
-
-    for (var i = 0; i < taskList.length; i++) {
-        tasks.push(taskList[i].getElementsByTagName('span')[0].innerText);
-    }
-
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-}
-
-// You can add more functionality like editing tasks, loading tasks from local storage, etc.
+updateClock();
